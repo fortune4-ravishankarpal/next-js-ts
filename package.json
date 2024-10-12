@@ -18,7 +18,8 @@
         "test:cli": "pnpm exec playwright test --project=chromium",
         "test:gn": "pnpm exec playwright codegen",
         "pw:report": "pnpm exec playwright show-report ",
-        "pw:open": "pnpm exec playwright open"
+        "pw:open": "pnpm exec playwright open",
+        "cy:open": "cypress open"
     },
     "dependencies": {
         "@hookform/error-message": "^2.0.1",
@@ -29,6 +30,7 @@
         "@testing-library/react": "^16.0.1",
         "class-variance-authority": "^0.7.0",
         "clsx": "^2.1.1",
+        "cypress": "^13.15.0",
         "json-server": "1.0.0-beta.3",
         "lucide-react": "^0.452.0",
         "next": "14.2.15",
