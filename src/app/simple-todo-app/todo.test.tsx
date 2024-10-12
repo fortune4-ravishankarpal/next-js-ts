@@ -1,21 +1,32 @@
-import { render, screen, fireEvent } from "@testing-library/react";
+import { fireEvent, render, screen } from "@testing-library/react";
 import TodoApp from "./page";
-
+import { it, expect, beforeAll } from "vitest";
 describe("test to do application", () => {
     beforeAll(() => {
         render(<TodoApp />);
     });
 
     it("should render", () => {
-        expect(document.querySelector(".input")).toBeVisible();
+        const linkElement = screen.getByText(/Todo App/i);
+        expect(linkElement).toBeVisible();
     });
 
-    it("should add a todo item", () => {
-        const text = "Walk the dog to todo item";
-        const input = screen.getByTestId("todo-input");
+    it("should add new todo", () => {
+        // data-testid: todo-input
+        const todoInput = screen.getByTestId("todo-input");
+        todoInput.focus();
+        let todoValue = "testTodo123";
+        fireEvent.change(todoInput, {
+            target: {
+                value: todoValue,
+            },
+        });
 
-        // Simulate input change
-        fireEvent.change(input, { target: { value: text } });
-        expect(input).toHaveValue(text);
+        fireEvent.keyDown(todoInput, {
+            key: "Enter",
+            code: "Enter",
+            charCode: 13,
+        });
+        expect(todoValue).toBeVisible();
     });
 });

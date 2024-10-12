@@ -12,7 +12,13 @@
         "test:ui": "vitest --ui",
         "srv": "npx json-server ./db.json --port 1248 ",
         "coverage-report": "npx serve",
-        "test:coverage": "vitest run --coverage"
+        "test:coverage": "vitest run --coverage",
+        "test:pw": "pnpm exec playwright test --project=chromium --headed",
+        "test:watch": "playwright test $npm_config_file --watch",
+        "test:cli": "pnpm exec playwright test --project=chromium",
+        "test:gn": "pnpm exec playwright codegen",
+        "pw:report": "pnpm exec playwright show-report ",
+        "pw:open": "pnpm exec playwright open"
     },
     "dependencies": {
         "@hookform/error-message": "^2.0.1",
@@ -35,6 +41,7 @@
         "zod": "^3.23.8"
     },
     "devDependencies": {
+        "@playwright/test": "^1.48.0",
         "@testing-library/jest-dom": "^6.5.0",
         "@types/node": "^20.16.11",
         "@types/react": "^18",
