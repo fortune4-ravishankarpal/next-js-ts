@@ -14,7 +14,6 @@
         "coverage-report": "npx serve",
         "test:coverage": "vitest run --coverage",
         "test:pw": "pnpm exec playwright test --project=chromium --headed",
-        "test:watch": "playwright test $npm_config_file --watch",
         "test:cli": "pnpm exec playwright test --project=chromium",
         "test:gn": "pnpm exec playwright codegen",
         "pw:report": "pnpm exec playwright show-report ",
