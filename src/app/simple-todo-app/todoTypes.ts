@@ -17,11 +17,13 @@ export const commentSchema = z.object({
 });
 
 export const todoSchema = z.object({
-    userId: z.number(),
-    id: z.number(),
+    userId: z.string().or(z.number()),
+    id: z.string().or(z.number()),
     title: z.string(),
     completed: z.boolean().optional(),
 });
+
+export const todoArraySchema = z.array(todoSchema);
 
 export const companySchema = z.object({
     name: z.string(),
@@ -60,7 +62,17 @@ export const dbSchema = z.object({
     todo: z.array(postSchema),
 });
 
+export const jsonResposeType = z.object({
+    first: z.number(),
+    prev: z.number().nullable(),
+    next: z.number().nullable(),
+    last: z.number(),
+    pages: z.number(),
+    items: z.number(),
+    data: z.any(),
+});
 // inferred types:
+export type jsonListResposeType = z.infer<typeof jsonResposeType>;
 export type Post = z.infer<typeof postSchema>;
 
 export type Comment = z.infer<typeof commentSchema>;

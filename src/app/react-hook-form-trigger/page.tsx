@@ -15,7 +15,7 @@ const schema2 = yup.object().shape({
     email1: yup.string().email().required(),
 });
 
-let delay = (ms: number) => new Promise((res) => setTimeout(res, ms));
+export let delay = (ms: number) => new Promise((res) => setTimeout(res, ms));
 export default function Page() {
     const m = useForm({ resolver: yupResolver(schema) });
     const m2 = useForm({ resolver: yupResolver(schema2) });
