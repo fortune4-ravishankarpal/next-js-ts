@@ -5,12 +5,7 @@ import { useQuery } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
 import { apiCall } from "@/lib/apiCall";
 import { z } from "zod"; // Adjust based on your API setup
-import {
-    jsonListResposeType,
-    jsonResposeType,
-    Todo,
-    todoArraySchema,
-} from "../../simple-todo-app/todoTypes"; // Adjust based on your type definitions
+import { jsonResposeType, Todo, todoArraySchema } from "../../simple-todo-app/todoTypes"; // Adjust based on your type definitions
 import { Checkbox } from "@/components/ui/checkbox"; // Adjust based on your UI components
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
@@ -43,10 +38,7 @@ function AllQueries() {
     type TodoListResponse = z.infer<typeof todoListResponseSchema>;
     const { data, isLoading, isError, error, isSuccess, refetch } = useQuery({
         queryKey: ["todos", page],
-        queryFn: () =>
-            apiCall
-                .get(`todos?_page=${page}&_per_page=${limit}`)
-                .then((res) => res.data as TodoListResponse),
+        queryFn: () => apiCall.get(`todos?_page=${page}&_per_page=${limit}`).then((res) => res.data as TodoListResponse),
     });
 
     useEffect(() => {
@@ -72,17 +64,11 @@ function AllQueries() {
                     <TodoUi refetch={refetch} key={todo.id} todo={todo} />
                 ))}
             </ul>
-            <Button
-                variant={"outline"}
-                onClick={() => setPage((prev) => Math.max(prev - 1, 0))}
-                disabled={!data.prev}>
+            <Button variant={"outline"} onClick={() => setPage((prev) => Math.max(prev - 1, 0))} disabled={!data.prev}>
                 Previous
             </Button>
             <span> {page} </span>
-            <Button
-                variant={"outline"}
-                disabled={!data.next}
-                onClick={() => setPage((prev) => prev + 1)}>
+            <Button variant={"outline"} disabled={!data.next} onClick={() => setPage((prev) => prev + 1)}>
                 Next
             </Button>
         </>
