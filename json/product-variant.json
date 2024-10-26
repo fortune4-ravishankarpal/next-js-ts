@@ -1,0 +1,29 @@
+{
+    "products": [
+        {
+            "id": 1,
+            "name": "Sample Product",
+            "description": "A sample product description",
+            "category": "Electronics",
+            "status": "draft",
+            "createdDate": "2024-10-26",
+            "updatedDate": "2024-10-26",
+            "versions": [
+                {
+                    "versionNumber": "1.0",
+                    "status": "draft",
+                    "createdDate": "2024-10-26",
+                    "variants": [
+                        {
+                            "variantId": "v1",
+                            "sku": "SP-001",
+                            "attributes": { "color": "red", "size": "M" },
+                            "price": 100,
+                            "stock": 50
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}
