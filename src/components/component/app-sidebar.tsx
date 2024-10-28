@@ -20,16 +20,6 @@ const items = [
         url: "/product-variants-version/#",
         icon: Calendar,
     },
-    {
-        title: "Search",
-        url: "/product-variants-version/#",
-        icon: Search,
-    },
-    {
-        title: "Settings",
-        url: "/product-variants-version/#",
-        icon: Settings,
-    },
 ];
 
 export function AppSidebar() {
