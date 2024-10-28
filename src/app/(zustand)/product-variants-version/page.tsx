@@ -1,51 +1,27 @@
 "use client";
-import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
-import { fetchPosts, updatePost } from "./postApiCall";
-import usePostsStore from "./usePostsStore";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
-import AddPost from "./Addpost";
-import PostList from "./PostList";
-import { addMutation, fetPostsMutation, updateMutation } from "./postService";
+import ProductVariantList from "./Product-list";
 import { cn } from "@/lib/utils";
+import { fetchProductMutation } from "./product-variant-service";
+import Link from "next/link";
 
-const PostsComponent = () => {
-    const { data: posts, isLoading, error, isError } = fetPostsMutation();
-    const { selectedPost, setSelectedPost } = usePostsStore();
-    const updatePost = updateMutation();
-    const addPost = addMutation();
+const ProductListComponent = () => {
+    const { data: productList, isLoading, error, isError } = fetchProductMutation();
 
     if (isError) return <p>{error.message}</p>;
-    let HandlePostSave = () => {
-        if (selectedPost?.id) {
-            updatePost.mutate(selectedPost as any);
-        } else {
-            addPost.mutate(selectedPost as any);
-        }
-    };
+
     return (
         <div>
-            <h1>Posts</h1>
-            {selectedPost ? (
-                <div className="border p-2 my-2 flex flex-col gap-2 bg-gray-100">
-                    <h2>Post</h2>
-                    <Input value={selectedPost.title} onChange={(e) => setSelectedPost({ ...selectedPost, title: e.target.value })} />
-                    <Textarea value={selectedPost.body} onChange={(e) => setSelectedPost({ ...selectedPost, body: e.target.value })} />
-                    <Button size={"sm"} disabled={updatePost.isPending || addPost.isPending} variant={"default"} onClick={HandlePostSave}>
-                        {updatePost.isPending || addPost.isPending ? "Saving..." : "Save"}
-                    </Button>
-                </div>
-            ) : (
-                <>
-                    <AddPost />
-                    <div className={cn("px-3", isLoading && "opacity-50")}>
-                        <PostList posts={posts} />
-                    </div>
-                </>
-            )}
+            <div className="container m-auto mt-3 flex justify-between">
+                <h1>Product List</h1>
+                <Link className="text-blue-500" href={"/product-variants-version/MT"}>
+                    {" "}
+                    Add Master Template
+                </Link>
+            </div>
+
+            <div className={cn("px-3", isLoading && "opacity-50")}>{productList && <ProductVariantList productList={productList} />}</div>
         </div>
     );
 };
 
-export default PostsComponent;
+export default ProductListComponent;
