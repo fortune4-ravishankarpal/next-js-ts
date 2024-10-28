@@ -10,7 +10,7 @@
         "format": "prettier --write .",
         "test": "vitest",
         "test:ui": "vitest --ui",
-        "srv": "npx json-server ./json/todo.json --port 1248 --watch",
+        "srv": "npx json-server db.json --port 1248 --watch",
         "coverage-report": "npx serve",
         "test:coverage": "vitest run --coverage",
         "cy:open": "cypress open"

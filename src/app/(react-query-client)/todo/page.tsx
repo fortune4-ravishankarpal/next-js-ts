@@ -1,6 +1,6 @@
 "use client"; // Ensure this component is treated as a client component
 
-import { useEffect, useId, useState } from "react";
+import { useEffect, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
 import { apiCall } from "@/lib/apiCall";
@@ -9,7 +9,6 @@ import { jsonResposeType, Todo, todoArraySchema } from "../../simple-todo-app/to
 import { Checkbox } from "@/components/ui/checkbox"; // Adjust based on your UI components
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import { delay } from "@/app/react-hook-form-trigger/page";
 export default function Page() {
     return (
         <>
@@ -37,9 +36,10 @@ function AllQueries() {
     });
     type TodoListResponse = z.infer<typeof todoListResponseSchema>;
     const { data, isLoading, isError, error, isSuccess, refetch } = useQuery({
-        queryKey: ["todos", page],
-        queryFn: () => apiCall.get(`todos?_page=${page}&_per_page=${limit}`).then((res) => res.data as TodoListResponse),
+        queryKey: ["todo", page],
+        queryFn: async () => (await apiCall.get(`todo?_page=${page}&_per_page=${limit}`)) as TodoListResponse,
     });
+    console.log("[48;2;255;255;0m [ data ]-39 [0m", data);
 
     useEffect(() => {
         router.push(`?page=${page}`);
@@ -85,7 +85,7 @@ function TodoUi({ todo, refetch }: TodoUiProps) {
     const saveTodo = async () => {
         setLoading(true);
         await apiCall
-            .put(`todos/${todo.id}`, {
+            .put(`todo/${todo.id}`, {
                 ...todo,
                 title: newTitle,
             })
@@ -117,7 +117,6 @@ function TodoUi({ todo, refetch }: TodoUiProps) {
     }
     return (
         <li className="flex gap-2 items-center w-full" onClick={() => setEditing(true)}>
-            <Checkbox defaultChecked={todo.completed} />
             {todo.id}. {todo.title}
         </li>
     );

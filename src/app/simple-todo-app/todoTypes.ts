@@ -17,10 +17,9 @@ export const commentSchema = z.object({
 });
 
 export const todoSchema = z.object({
-    userId: z.string().or(z.number()),
     id: z.string().or(z.number()),
     title: z.string(),
-    completed: z.boolean().optional(),
+    body: z.string().optional(),
 });
 
 export const todoArraySchema = z.array(todoSchema);
