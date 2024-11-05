@@ -40,13 +40,13 @@ export default function RootLayout({ children }: LayoutProps) {
     return (
         <html lang="en" className="scroll-smooth  bg-white">
             <body>
-                {/* <div className="flex gap-2 justify-self-end container m-auto">
+                <div className="flex gap-2 justify-self-end container m-auto">
                     {Pages.map((x) => (
                         <Link href={x.path} className=" text-blue-500 text-capitalize">
                             {x.name}
                         </Link>
                     ))}
-                </div> */}
+                </div>
                 {children}
             </body>
         </html>
