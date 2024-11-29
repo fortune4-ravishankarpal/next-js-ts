@@ -10,6 +10,6 @@ function computeFibonacci(n) {
     if (n <= 1) return n;
     return computeFibonacci(n - 1) + computeFibonacci(n - 2);
 }
-const result = withLogging(computeFibonacci)(35);
+const result = withLogging(computeFibonacci)(40);
 
 console.log(`Fibonacci result: ${result}`);
