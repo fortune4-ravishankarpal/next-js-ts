@@ -1,0 +1,32 @@
+{
+  "MT": [
+    {
+      "id": "a562",
+      "name": "a",
+      "fields": [
+        {
+          "fieldName": "asf",
+          "fieldType": "text",
+          "required": false
+        },
+        {
+          "fieldName": "asdf",
+          "fieldType": "text",
+          "required": false
+        }
+      ]
+    }
+  ],
+  "posts": [
+    {
+      "id": "905c",
+      "title": "ravt",
+      "body": "ravis"
+    },
+    {
+      "id": "c4a6",
+      "title": "New Post",
+      "body": "This is a new post"
+    }
+  ]
+}
