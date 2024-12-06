@@ -10,6 +10,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "clark": "^0.0.6",
+    "debug": "^4.3.7",
     "next": "^15.0.3",
     "react": "^18.3.1",
     "react-dom": "^18.3.1"
