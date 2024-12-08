@@ -1,12 +1,19 @@
+
 import debug from "debug";
 
 export const setupDebug = (namespace) => {
+    let allNamespace = "app:";
+    let findNameSpace = allNamespace + "*";
+    namespace = allNamespace + namespace;
     if (typeof window !== "undefined") {
-        // Set the namespace in localStorage for consistent debugging
-        if (!localStorage.getItem("debug")) {
-            localStorage.setItem("debug", namespace);
+        let val = localStorage.getItem("debug");
+        if (!val) {
+            localStorage.setItem("debug", findNameSpace);
         }
-        debug.enable(localStorage.getItem("debug")); // Enable debug based on namespace
+        debug.enable(val);
+    } else {
+        process.env.DEBUG = findNameSpace;
+        debug.enable(namespace);
     }
-    return debug(namespace); // Return a debug logger
+    return debug(namespace);
 };
