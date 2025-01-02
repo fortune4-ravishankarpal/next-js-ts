@@ -1,12 +1,8 @@
-import { setupDebug } from "@/hook/withDebug";
+export default async function Page() {
+    const res = await fetch("http://localhost:4000", {
+        next: { revalidate: 3600 }, // Revalidate every 1 hour
+    });
+    const data = await res.json();
 
-const Home = () => {
-    setupDebug("beforeEnv")("Hello");
-    return (
-        <div>
-
-        </div>
-    );
-};
-
-export default Home;
+    return <div>{JSON.stringify(data)}</div>;
+}
