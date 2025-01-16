@@ -4,7 +4,7 @@
     "private": true,
     "type": "module",
     "scripts": {
-        "dev": "env-cmd -f .env.uat next dev",
+        "dev": "env-cmd -f .env.uat next dev --port 49152",
         "predev": "node init_all_check.js",
         "build": "next build",
         "start": "next start",
@@ -19,6 +19,7 @@
         "env-cmd": "^10.1.0",
         "next": "15.0.4",
         "react": "^19.0.0",
-        "react-dom": "^19.0.0"
+        "react-dom": "^19.0.0",
+        "zod": "^3.24.1"
     }
 }
