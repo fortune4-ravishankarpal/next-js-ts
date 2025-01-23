@@ -1,4 +1,12 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {};
+// import path from "path";
+
+const nextConfig = {
+    reactStrictMode: true,
+    // webpack: (config) => {
+    //     config.resolve.alias["config"] = path.resolve(__dirname, "config/default.json");
+    //     return config;
+    // },
+};
 
 export default nextConfig;
